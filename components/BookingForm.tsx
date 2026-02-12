@@ -1,8 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { mockPatients } from '../lib/mock-data';
 
+type Recurrence = 'none' | 'weekly' | 'biweekly';
+
 export function BookingForm() {
+  const [recurrence, setRecurrence] = useState<Recurrence>('none');
+  const [buffer, setBuffer] = useState(10);
+
   return (
     <form className="form" onSubmit={(e) => e.preventDefault()}>
       <div className="form-grid">
@@ -38,9 +44,31 @@ export function BookingForm() {
         </label>
         <label className="form-field">
           <span>Buffer (min)</span>
-          <input type="number" min="0" max="60" step="5" defaultValue="10" />
+          <input
+            type="number"
+            min="0"
+            max="60"
+            step="5"
+            value={buffer}
+            onChange={(e) => setBuffer(Number(e.target.value) || 0)}
+          />
+          <small className="muted">Prep/turnover padding after visit</small>
+        </label>
+        <label className="form-field">
+          <span>Recurrence</span>
+          <select value={recurrence} onChange={(e) => setRecurrence(e.target.value as Recurrence)}>
+            <option value="none">None</option>
+            <option value="weekly">Weekly</option>
+            <option value="biweekly">Every 2 weeks</option>
+          </select>
         </label>
       </div>
+      {recurrence !== 'none' && (
+        <div className="callout">
+          <div className="callout-title">Recurrence preview</div>
+          <p className="muted small">Creates 4 future slots on the same weekday ({recurrence}).</p>
+        </div>
+      )}
       <label className="form-field">
         <span>Notes</span>
         <textarea rows={2} placeholder="Optional note for front desk or therapist" />
