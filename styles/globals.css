@@ -123,6 +123,10 @@ h1 { font-size: 34px; margin: 8px 0 14px; line-height: 1.15; }
 .card p { margin: 0; color: var(--muted); }
 .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 
+.feature-link { text-decoration: none; color: var(--text); transition: transform 0.1s ease, box-shadow 0.1s ease; }
+.feature-link .link { color: var(--accent); font-weight: 700; display: inline-block; margin-top: 8px; }
+.feature-link:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
 .table { width: 100%; font-size: 14px; }
 .table-head, .table-row {
   display: grid;
