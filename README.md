@@ -2,6 +2,8 @@
 
 Goal: SSR Next.js app that can run without external API keys, but is ready to plug in auth, payments, storage, and telehealth later.
 
+Live preview (GH Pages, static export): https://mindfreakzerox.github.io/physiotherapy-scheduler/
+
 ## Stack
 - Next.js 14 (App Router, SSR-first)
 - TypeScript
