@@ -1,23 +1,27 @@
 const features = [
   {
-    title: 'Patient portal',
-    description: 'Read-only preview with mock unlock, exercises, messages, and shared docs. Exports cleanly.'
+    title: 'Online booking',
+    description: '24/7 self-serve with buffers, rooms, and services. Ready to plug in payments later.'
   },
   {
     title: 'Scheduling',
-    description: 'Book, reschedule, and manage multi-practitioner calendars with buffers and rooms.'
+    description: 'Day/week/month views, multi-practitioner calendars, quick reschedule and cancel.'
   },
   {
-    title: 'Billing-ready',
-    description: 'Charge visits, add line items, and prep for insurance claims. Stripe-ready.'
+    title: 'Documentation',
+    description: 'Treatment notes and intake basics with templates. File uploads planned for Phase 2.'
   },
   {
-    title: 'Telehealth',
-    description: 'Drop in Daily/Twilio when you add keys. Mock links today.'
+    title: 'Payments-ready',
+    description: 'Stripe wiring deferred—UI for invoices, receipts, and statuses is in place.'
   },
   {
-    title: 'Notes & Docs',
-    description: 'Secure charting and file attachments. Storage placeholder is ready.'
+    title: 'Telehealth-ready',
+    description: 'Embed Daily/Twilio when keys are provided. Mock join links included.'
+  },
+  {
+    title: 'Reporting',
+    description: 'Appointments, utilization, revenue placeholders, and upcoming bookings at a glance.'
   }
 ];
 
