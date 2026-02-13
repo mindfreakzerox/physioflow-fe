@@ -85,6 +85,19 @@ h1 { font-size: 34px; margin: 8px 0 14px; line-height: 1.15; }
   gap: 16px;
 }
 
+.trust {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.trust-item {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+
 .testimonial {
   display: grid;
   grid-template-columns: auto 1fr;
