@@ -79,6 +79,21 @@ h1 { font-size: 34px; margin: 8px 0 14px; line-height: 1.15; }
 }
 .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 
+.testimonial {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  align-items: center;
+}
+.quote-mark { font-size: 44px; color: var(--accent); font-weight: 800; line-height: 1; }
+.quote { font-size: 18px; color: var(--text); margin: 0 0 8px; }
+.quote-meta { margin: 0; color: var(--muted); font-weight: 600; }
+
 .card {
   background: var(--card);
   border: 1px solid var(--border);

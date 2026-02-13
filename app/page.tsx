@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Hero } from '../components/Hero';
+import { Testimonial } from '../components/Testimonial';
 import { FeatureGrid } from '../components/FeatureGrid';
 import { CTA } from '../components/CTA';
 
@@ -7,6 +8,7 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <Testimonial />
       <FeatureGrid />
       <CTA />
       <section className="section muted">
