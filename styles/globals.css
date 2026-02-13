@@ -79,6 +79,12 @@ h1 { font-size: 34px; margin: 8px 0 14px; line-height: 1.15; }
 }
 .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
 .testimonial {
   display: grid;
   grid-template-columns: auto 1fr;
