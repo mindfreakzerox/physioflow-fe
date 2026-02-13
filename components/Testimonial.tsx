@@ -6,10 +6,9 @@ export function Testimonial() {
           <div className="quote-mark">“</div>
           <div>
             <p className="quote">
-              “Jane has been a game changer for keeping our physio schedules full and patients happy. I love how
-              you consistently make this clinic software better and better by the month.”
+              “PhysioFlow keeps our schedules full and admin light. The clinic runs smoother, and patients notice.”
             </p>
-            <p className="quote-meta">Sue Shalanski — Reach Physio, Squamish BC</p>
+            <p className="quote-meta">Clinic lead — PhysioFlow demo</p>
           </div>
         </div>
       </div>

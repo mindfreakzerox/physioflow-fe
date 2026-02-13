@@ -5,11 +5,11 @@ export function Hero() {
     <section className="hero">
       <div className="container hero-inner">
         <div>
-          <p className="eyebrow">Built for physiotherapy clinics</p>
-          <h1>Practice management like Jane—appointments, notes, and billing in one place.</h1>
+          <p className="eyebrow">PhysioFlow — built for modern clinics</p>
+          <h1>Scheduling, notes, billing, and telehealth in one place.</h1>
           <p className="lede">
-            Online booking, therapist schedules, patient notes, and ready-to-wire payments. No API keys
-            required for this mock—plug in Stripe, SendGrid, and auth when you&apos;re ready.
+            Online booking, therapist schedules, patient notes, and mock payments. No external keys needed in
+            mock mode—wire Stripe, email, and auth when you&apos;re ready.
           </p>
           <div className="actions">
             <Link className="btn" href="/dashboard">Book a demo</Link>

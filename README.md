@@ -1,7 +1,7 @@
 # Physiotherapy-Scheduler Project Brief (Updated)
 
 ## 1. Project Overview
-Physiotherapy-Scheduler is a web-based practice management and appointment booking platform for physiotherapy clinics. It centralizes appointments, therapists, patients, billing, and reporting—similar to Jane, but focused on physio practices. MVP first, then expansion.
+Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appointment booking platform for physiotherapy clinics. It centralizes appointments, therapists, patients, billing, and reporting with a physio-first focus. MVP first, then expansion.
 
 ## 2. Target Users
 - **Primary:** Clinic owners, Clinic administrators, Physiotherapists

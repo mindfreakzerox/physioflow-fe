@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Clinic {
+  id            String         @id @default(cuid())
+  name          String
+  slug          String         @unique
+  address       String?
+  phone         String?
+  email         String?
+  timezone      String         @default("UTC")
+  practitioners Practitioner[]
+  patients      Patient[]
+  services      Service[]
+  appointments  Appointment[]
+  createdAt     DateTime       @default(now())
+}
+
+model Practitioner {
+  id           String        @id @default(cuid())
+  clinicId     String
+  clinic       Clinic        @relation(fields: [clinicId], references: [id])
+  name         String
+  email        String        @unique
+  password     String
+  role         String        @default("practitioner")
+  specialties  String?
+  avatarUrl    String?
+  appointments Appointment[]
+  createdAt    DateTime      @default(now())
+}
+
+model Patient {
+  id           String        @id @default(cuid())
+  clinicId     String
+  clinic       Clinic        @relation(fields: [clinicId], references: [id])
+  name         String
+  email        String
+  phone        String?
+  dateOfBirth  DateTime?
+  address      String?
+  notes        String?
+  appointments Appointment[]
+  invoices     Invoice[]
+  documents    Document[]
+  createdAt    DateTime      @default(now())
+}
+
+model Service {
+  id           String        @id @default(cuid())
+  clinicId     String
+  clinic       Clinic        @relation(fields: [clinicId], references: [id])
+  name         String
+  duration     Int
+  price        Float
+  description  String?
+  color        String        @default("#0D9488")
+  appointments Appointment[]
+}
+
+model Appointment {
+  id             String       @id @default(cuid())
+  clinicId       String
+  clinic         Clinic       @relation(fields: [clinicId], references: [id])
+  patientId      String
+  patient        Patient      @relation(fields: [patientId], references: [id])
+  practitionerId String
+  practitioner   Practitioner @relation(fields: [practitionerId], references: [id])
+  serviceId      String
+  service        Service      @relation(fields: [serviceId], references: [id])
+  startTime      DateTime
+  endTime        DateTime
+  status         String       @default("scheduled")
+  notes          String?
+  invoice        Invoice?
+  createdAt      DateTime     @default(now())
+}
+
+model Invoice {
+  id            String       @id @default(cuid())
+  appointmentId String?      @unique
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id])
+  patientId     String
+  patient       Patient      @relation(fields: [patientId], references: [id])
+  amount        Float
+  status        String       @default("pending")
+  paidAt        DateTime?
+  createdAt     DateTime     @default(now())
+}
+
+model Document {
+  id         String   @id @default(cuid())
+  patientId  String
+  patient    Patient  @relation(fields: [patientId], references: [id])
+  name       String
+  type       String
+  filePath   String
+  uploadedAt DateTime @default(now())
+}

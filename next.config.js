@@ -7,6 +7,9 @@ const nextConfig = {
   basePath,
   assetPrefix,
   trailingSlash: true,
+  experimental: {
+    webpackBuildWorker: false
+  },
   typescript: {
     ignoreBuildErrors: true
   }

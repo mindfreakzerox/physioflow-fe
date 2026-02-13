@@ -43,7 +43,7 @@ export default function FeaturesPage() {
         <div className="hero-inner" style={{ gap: '12px' }}>
           <div>
             <p className="eyebrow">Features</p>
-            <h1>Everything you need to run a physio clinic, Jane-style.</h1>
+            <h1>Everything you need to run a physio clinic with PhysioFlow.</h1>
             <p className="lede">Pick a feature to see the details.</p>
           </div>
         </div>
