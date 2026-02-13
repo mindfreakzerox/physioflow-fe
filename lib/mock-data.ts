@@ -21,6 +21,36 @@ export type Task = {
   due: string;
 };
 
+export type CalendarEvent = {
+  id: string;
+  day: string;
+  start: string;
+  end: string;
+  patient: string;
+  therapist: string;
+  visit: string;
+  mode: 'In person' | 'Telehealth';
+  room?: string;
+  status: 'scheduled' | 'checked-in' | 'completed' | 'canceled';
+  note?: string;
+};
+
+export type AvailabilityDay = {
+  day: string;
+  open: string;
+  close: string;
+  booked: number;
+  slots: number;
+  holds?: number;
+};
+
+export type BookingSignal = {
+  id: string;
+  label: string;
+  status: string;
+  note?: string;
+};
+
 export const mockAppointments: Appointment[] = [
   { id: '1', time: '09:00', patient: 'Alex Kim', kind: 'Initial consult', location: 'Room 1', status: 'scheduled' },
   { id: '2', time: '11:00', patient: 'Priya Nair', kind: 'Follow-up', location: 'Room 2', status: 'checked-in' },
@@ -39,6 +69,99 @@ export const mockTasks: Task[] = [
   { id: 't1', title: 'Send exercise plan to Alex', status: 'doing', due: 'Due today' },
   { id: 't2', title: 'Submit Priya billing', status: 'todo', due: 'Due today' },
   { id: 't3', title: 'Prep Omar telehealth link', status: 'todo', due: 'Due in 2h' }
+];
+
+export const calendarEvents: CalendarEvent[] = [
+  {
+    id: 'mon-0900',
+    day: 'Mon',
+    start: '09:00',
+    end: '09:45',
+    patient: 'Alex Kim',
+    therapist: 'Dr. Priya Nair',
+    visit: 'Initial consult',
+    mode: 'In person',
+    room: 'Room 1',
+    status: 'checked-in',
+    note: 'Arrived early; needs ankle rehab plan'
+  },
+  {
+    id: 'mon-1115',
+    day: 'Mon',
+    start: '11:15',
+    end: '12:00',
+    patient: 'Priya Nair',
+    therapist: 'Dr. Sam Lee',
+    visit: 'Follow-up',
+    mode: 'In person',
+    room: 'Room 2',
+    status: 'scheduled',
+    note: 'Add 10 min buffer for manual therapy'
+  },
+  {
+    id: 'mon-1400',
+    day: 'Mon',
+    start: '14:00',
+    end: '14:45',
+    patient: 'Omar Rahman',
+    therapist: 'Dr. Priya Nair',
+    visit: 'Telehealth',
+    mode: 'Telehealth',
+    status: 'scheduled',
+    note: 'Send join link from portal; confirm audio'
+  },
+  {
+    id: 'tue-0930',
+    day: 'Tue',
+    start: '09:30',
+    end: '10:15',
+    patient: 'Sam Lee',
+    therapist: 'Dr. Priya Nair',
+    visit: 'Manual therapy',
+    mode: 'In person',
+    room: 'Room 3',
+    status: 'completed',
+    note: 'Marked complete; add progress note'
+  },
+  {
+    id: 'tue-1200',
+    day: 'Tue',
+    start: '12:00',
+    end: '12:30',
+    patient: 'Waitlist slot',
+    therapist: 'Open',
+    visit: 'Hold slot',
+    mode: 'In person',
+    room: 'Flex',
+    status: 'scheduled',
+    note: 'Held for urgent add-on; can release'
+  },
+  {
+    id: 'wed-1600',
+    day: 'Wed',
+    start: '16:00',
+    end: '16:30',
+    patient: 'Telehealth buffer',
+    therapist: 'Shared',
+    visit: 'Buffer window',
+    mode: 'Telehealth',
+    status: 'canceled',
+    note: 'Canceled yesterday; keep buffer for overrun'
+  }
+];
+
+export const weeklyAvailability: AvailabilityDay[] = [
+  { day: 'Mon', open: '08:30', close: '17:30', booked: 10, slots: 12 },
+  { day: 'Tue', open: '09:00', close: '17:00', booked: 8, slots: 12, holds: 1 },
+  { day: 'Wed', open: '10:00', close: '18:00', booked: 9, slots: 12 },
+  { day: 'Thu', open: '09:00', close: '17:00', booked: 7, slots: 12 },
+  { day: 'Fri', open: '08:00', close: '14:00', booked: 5, slots: 8 }
+];
+
+export const bookingSignals: BookingSignal[] = [
+  { id: 'waitlist', label: 'Waitlist', status: '3 patients', note: 'Match to Tue/Thu afternoons' },
+  { id: 'buffers', label: 'Buffers', status: '10–15 min', note: 'Auto-padded between visits (mock)' },
+  { id: 'overbook', label: 'Overbook guard', status: 'On', note: 'Blocks double-book in same room' }
 ];
 
 export type PortalPreview = {

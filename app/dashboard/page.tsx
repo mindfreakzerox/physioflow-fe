@@ -1,11 +1,13 @@
-import { ScheduleTable } from '../../components/ScheduleTable';
-import { PatientList } from '../../components/PatientList';
-import { TaskList } from '../../components/TaskList';
+import { AvailabilityGlance } from '../../components/AvailabilityGlance';
 import { BookingForm } from '../../components/BookingForm';
-import { IntakeNotes } from '../../components/IntakeNotes';
 import { BillingSummary } from '../../components/BillingSummary';
-import { TelehealthStub } from '../../components/TelehealthStub';
+import { CalendarRibbon } from '../../components/CalendarRibbon';
+import { IntakeNotes } from '../../components/IntakeNotes';
+import { PatientList } from '../../components/PatientList';
 import { PortalSnapshot } from '../../components/PortalSnapshot';
+import { ScheduleTable } from '../../components/ScheduleTable';
+import { TaskList } from '../../components/TaskList';
+import { TelehealthStub } from '../../components/TelehealthStub';
 import { mockAppointments, mockPatients, mockTasks } from '../../lib/mock-data';
 
 export const dynamic = 'force-static';
@@ -17,11 +19,28 @@ export default function DashboardPage() {
         <div className="grid dashboard-grid">
           <div className="card">
             <div className="card-header">
+              <h2>Calendar snapshot</h2>
+              <span className="pill">Week</span>
+            </div>
+            <CalendarRibbon />
+          </div>
+
+          <div className="card">
+            <div className="card-header">
+              <h2>Availability</h2>
+              <span className="pill">Mock data</span>
+            </div>
+            <AvailabilityGlance />
+          </div>
+
+          <div className="card">
+            <div className="card-header">
               <h2>Today&apos;s Schedule</h2>
               <span className="pill">SSR</span>
             </div>
             <ScheduleTable appointments={mockAppointments} />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Patients</h2>
@@ -29,6 +48,7 @@ export default function DashboardPage() {
             </div>
             <PatientList patients={mockPatients} />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Tasks</h2>
@@ -36,6 +56,7 @@ export default function DashboardPage() {
             </div>
             <TaskList tasks={mockTasks} />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Book appointment</h2>
@@ -43,6 +64,7 @@ export default function DashboardPage() {
             </div>
             <BookingForm />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Intake & notes</h2>
@@ -50,6 +72,7 @@ export default function DashboardPage() {
             </div>
             <IntakeNotes />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Billing</h2>
@@ -57,6 +80,7 @@ export default function DashboardPage() {
             </div>
             <BillingSummary />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Telehealth</h2>
@@ -64,6 +88,7 @@ export default function DashboardPage() {
             </div>
             <TelehealthStub />
           </div>
+
           <div className="card">
             <div className="card-header">
               <h2>Patient portal</h2>
