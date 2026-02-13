@@ -112,6 +112,36 @@ export default function UiKitPage() {
 
         <div className="card" style={{ marginTop: '16px' }}>
           <div className="card-header">
+            <h3>Typography & spacing</h3>
+            <span className="pill ghost">Scale</span>
+          </div>
+          <ul className="mini-list">
+            <li className="mini-row"><span className="mini-title">Headings</span><span className="muted small">H1 34 / H2 24 / H3 18 — semi-bold</span></li>
+            <li className="mini-row"><span className="mini-title">Body</span><span className="muted small">14–16px, 1.5 line height, muted secondary</span></li>
+            <li className="mini-row"><span className="mini-title">Spacing</span><span className="muted small">4 / 8 / 12 / 16 / 24 step for padding + grid gutters</span></li>
+            <li className="mini-row"><span className="mini-title">Radius</span><span className="muted small">var(--radius) = 12px, var(--radius-lg) = 14px</span></li>
+            <li className="mini-row"><span className="mini-title">Shadow</span><span className="muted small">var(--shadow) for cards and CTAs only</span></li>
+          </ul>
+        </div>
+
+        <div className="card" style={{ marginTop: '16px' }}>
+          <div className="card-header">
+            <h3>Surface + states</h3>
+            <span className="pill ghost">Consistency</span>
+          </div>
+          <div className="stack">
+            <div className="stack-row">
+              <span className="badge scheduled">Scheduled</span>
+              <span className="badge checked-in">Arrived</span>
+              <span className="badge completed">Completed</span>
+              <span className="badge warning">Alert</span>
+            </div>
+            <p className="muted small">Use badges for status, pills for filters, chips for toggles (as on the calendar view switcher). Inputs share the white surface with a subtle inset shadow.</p>
+          </div>
+        </div>
+
+        <div className="card" style={{ marginTop: '16px' }}>
+          <div className="card-header">
             <h3>Usage</h3>
             <span className="pill ghost">Docs</span>
           </div>

@@ -1,5 +1,6 @@
 import { AvailabilityGlance } from '../../components/AvailabilityGlance';
 import { BookingForm } from '../../components/BookingForm';
+import { BookingSignals } from '../../components/BookingSignals';
 import { BillingSummary } from '../../components/BillingSummary';
 import { CalendarRibbon } from '../../components/CalendarRibbon';
 import { IntakeNotes } from '../../components/IntakeNotes';
@@ -63,6 +64,10 @@ export default function DashboardPage() {
               <span className="pill">Mock</span>
             </div>
             <BookingForm />
+          </div>
+
+          <div className="card">
+            <BookingSignals />
           </div>
 
           <div className="card">

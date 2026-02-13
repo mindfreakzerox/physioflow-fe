@@ -80,7 +80,8 @@ Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appo
 - **Phase 2 – Advanced:** SMS reminders, file/document uploads, advanced analytics, multi-location support
 
 ## Current State (workspace)
-- Next.js app with static export; out/ generated. GH Pages push pending (auth needed).
+- Next.js app with static export; out/ generated. GH Pages published via SSH at https://mindfreakzerox.github.io/physiotherapy-scheduler/.
 - Recent build succeeded via SSH. Local builds previously segfaulted on next build; resolved externally.
-- gh-pages worktree was created and cleaned; needs push with proper GitHub auth to publish.
-- UI kit page added (/ui-kit) plus dashboard calendar ribbon + availability glance for booking UX polish.
+- gh-pages worktree is clean; future deploys reuse static export.
+- Calendar ribbon now has day/week/month toggles plus reschedule/telehealth queue; booking guardrails (waitlist, buffers, overbook guard) visible on dashboard.
+- UI kit expanded with typography/spacing scale and state guidance; inputs now share white surfaces to match cards.
