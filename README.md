@@ -80,10 +80,10 @@ Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appo
 - **Phase 2 – Advanced:** SMS reminders, file/document uploads, advanced analytics, multi-location support
 
 ## Current State (workspace)
-- Next.js app with static export; out/ generated. GH Pages published via SSH at https://mindfreakzerox.github.io/physiotherapy-scheduler/.
-- New sticky nav with quick links to dashboard, features, pricing, contact, and portal; CTA buttons updated to surface the new pages.
-- Pricing and contact pages added with export-safe CTAs and mock forms (no backend).
-- Recent build succeeded via SSH. Local builds previously segfaulted on next build; resolved externally.
-- gh-pages worktree is clean; future deploys reuse static export.
-- Calendar ribbon now has day/week/month toggles plus reschedule/telehealth queue; booking guardrails (waitlist, buffers, overbook guard) visible on dashboard.
-- UI kit expanded with typography/spacing scale and state guidance; inputs now share white surfaces to match cards.
+- PhysioFlow-branded Next.js 14.1 app with landing, features hub/detail pages, pricing/contact stubs, portal preview, and dashboard mock (SSR target; static export retired).
+- Local `next build`/`next lint` currently stall at “Creating an optimized production build” on Node 22.22.0 and 18.19.1; needs profiling/flags or Next upgrade. No fresh `.next/out` artifacts yet.
+- Sticky nav links to dashboard/features/pricing/contact/portal; CTA buttons align to refreshed flows.
+- Pricing and contact pages include tier cards and mock forms (no backend).
+- Calendar ribbon has day/week/month toggles plus reschedule/telehealth queue; booking guardrails (waitlist, buffers, overbook guard) visible on dashboard.
+- UI kit expanded with typography/spacing scale and state guidance; inputs share white surfaces to match cards.
+- Legacy static export remains on gh-pages for reference: https://mindfreakzerox.github.io/physiotherapy-scheduler/.
