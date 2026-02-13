@@ -27,11 +27,11 @@ export function PortalPreview() {
           <p className="eyebrow">Patient portal preview</p>
           <h2>Read-only mock with simple access gate</h2>
           <p className="muted">
-            No backend or PHI. Unlock just toggles the preview state so you can demo the flow without
-            connecting auth or storage.
+            No backend or PHI. Unlock only flips UI state so you can demo without storing data.
           </p>
           <div className="actions">
             <Link className="btn" href="/dashboard">Back to dashboard</Link>
+            <Link className="btn ghost" href="/pricing">Plans</Link>
             <span className={`pill ${unlocked ? 'success' : 'warning'}`}>
               {unlocked ? 'Unlocked (mock only)' : 'Locked for patients'}
             </span>
@@ -49,9 +49,9 @@ export function PortalPreview() {
             <div className="muted small">{portalPreview.nextVisit.reason}</div>
           </div>
           <div className="meta-box">
-            <div className="label">Mode</div>
-            <div className="value">{portalPreview.nextVisit.mode}</div>
-            <div className="muted small">{portalPreview.nextVisit.location}</div>
+            <div className="label">Balance</div>
+            <div className="value">{portalPreview.billing.balance}</div>
+            <div className="muted small">{portalPreview.billing.due}</div>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@ export function PortalPreview() {
                   <li key={doc.title} className="mini-row">
                     <div className="mini-title">{doc.title}</div>
                     <div className="muted small">{doc.note || 'Ready in portal'}</div>
-                    <span className={`pill ${doc.status === 'shared' ? 'success' : 'info'}`}>
+                    <span className={`pill ${doc.status === 'shared' ? 'success' : doc.status === 'draft' ? 'warning' : 'info'}`}>
                       {doc.status}
                     </span>
                   </li>
@@ -127,7 +127,51 @@ export function PortalPreview() {
               </ul>
             </div>
 
-            <p className="muted small">This page is static and exports cleanly. Unlock just toggles local UI state.</p>
+            <div className="portal-block">
+              <div className="block-title">Billing & balance</div>
+              <div className="portal-balance">
+                <div>
+                  <div className="label">Balance</div>
+                  <div className="balance-amount">{portalPreview.billing.balance}</div>
+                  <div className="balance-meta">{portalPreview.billing.due}</div>
+                </div>
+                <div className="balance-meta">{portalPreview.billing.coverage}<br />{portalPreview.billing.method}</div>
+                <div className="balance-meta">{portalPreview.billing.lastPaid}</div>
+              </div>
+              <div className="chip-row">
+                <span className="chip success">Autopay on (mock)</span>
+                <span className="chip info">Send receipt</span>
+                <span className="chip ghost">Export CSV</span>
+              </div>
+            </div>
+
+            <div className="portal-block">
+              <div className="block-title">Forms & consents</div>
+              <ul className="mini-list">
+                {portalPreview.forms.map((form) => (
+                  <li key={form.title} className="mini-row">
+                    <div className="mini-title">{form.title}</div>
+                    <div className="muted small">{form.note}</div>
+                    <span className={`pill ${form.status === 'signed' ? 'success' : form.status === 'submitted' ? 'info' : 'warning'}`}>
+                      {form.status}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="portal-block">
+              <div className="block-title">Quick actions</div>
+              <div className="chip-row">
+                <span className="chip info">Resend portal link</span>
+                <span className="chip ghost">Share telehealth link</span>
+                <span className="chip warning">Pause portal</span>
+                <span className="chip success">Mark consent signed</span>
+              </div>
+              <p className="muted small">All actions are mock-only; nothing is stored.</p>
+            </div>
+
+            <p className="muted small">This page is static and exports cleanly. Unlock only toggles local UI state.</p>
           </div>
         </div>
 

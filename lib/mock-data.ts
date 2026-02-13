@@ -180,6 +180,14 @@ export type PortalPreview = {
   documents: { title: string; status: 'draft' | 'shared' | 'pending'; note?: string }[];
   messages: { from: string; time: string; text: string }[];
   checklist: string[];
+  billing: {
+    balance: string;
+    due: string;
+    coverage: string;
+    method: string;
+    lastPaid: string;
+  };
+  forms: { title: string; status: 'pending' | 'submitted' | 'signed'; note?: string }[];
 };
 
 export const portalPreview: PortalPreview = {
@@ -206,11 +214,24 @@ export const portalPreview: PortalPreview = {
   ],
   messages: [
     { from: 'Priya', time: 'Today 9:10 AM', text: 'See you tomorrow. Use the portal link to join.' },
-    { from: 'Front desk', time: 'Yesterday', text: 'Parking validation available for in-person visits.' }
+    { from: 'Front desk', time: 'Yesterday', text: 'Parking validation available for in-person visits.' },
+    { from: 'Billing', time: 'Yesterday', text: 'Balance will clear on card ending •4242 (mock).' }
   ],
   checklist: [
     'Verify consent before telehealth',
     'Share exercise progress after each visit',
     'Portal access resets weekly (mock)'
+  ],
+  billing: {
+    balance: '$82.00',
+    due: 'Due in 5 days',
+    coverage: 'Insurance: 80% covered',
+    method: 'Card •4242 on file',
+    lastPaid: 'Last payment: Jan 28'
+  },
+  forms: [
+    { title: 'Consent & intake', status: 'signed', note: 'Signed Jan 12' },
+    { title: 'Telehealth policy', status: 'submitted', note: 'Ready for next visit' },
+    { title: 'Payment authorization', status: 'pending', note: 'Collect on unlock (mock)' }
   ]
 };
