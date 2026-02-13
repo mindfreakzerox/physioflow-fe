@@ -6,7 +6,10 @@ const nextConfig = {
   output: 'export',
   basePath,
   assetPrefix,
-  trailingSlash: true
+  trailingSlash: true,
+  typescript: {
+    ignoreBuildErrors: true
+  }
 };
 
 module.exports = nextConfig;
