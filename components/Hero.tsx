@@ -13,6 +13,7 @@ export function Hero() {
           </p>
           <div className="actions">
             <Link className="btn" href="/dashboard">View dashboard</Link>
+            <Link className="btn ghost" href="/portal">Patient portal</Link>
             <Link className="btn ghost" href="#features">See features</Link>
           </div>
         </div>

@@ -10,6 +10,7 @@ export function CTA() {
         </div>
         <div className="actions">
           <Link className="btn" href="/dashboard">Open dashboard</Link>
+          <Link className="btn ghost" href="/portal">Preview patient view</Link>
           <Link className="btn ghost" href="/api/appointments.json">View mock API</Link>
         </div>
       </div>

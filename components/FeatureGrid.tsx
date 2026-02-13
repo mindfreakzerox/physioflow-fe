@@ -1,5 +1,9 @@
 const features = [
   {
+    title: 'Patient portal',
+    description: 'Read-only preview with mock unlock, exercises, messages, and shared docs. Exports cleanly.'
+  },
+  {
     title: 'Scheduling',
     description: 'Book, reschedule, and manage multi-practitioner calendars with buffers and rooms.'
   },

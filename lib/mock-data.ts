@@ -40,3 +40,54 @@ export const mockTasks: Task[] = [
   { id: 't2', title: 'Submit Priya billing', status: 'todo', due: 'Due today' },
   { id: 't3', title: 'Prep Omar telehealth link', status: 'todo', due: 'Due in 2h' }
 ];
+
+export type PortalPreview = {
+  patientName: string;
+  patientEmail: string;
+  accessCode: string;
+  birthDate: string;
+  nextVisit: {
+    date: string;
+    mode: 'In person' | 'Telehealth';
+    clinician: string;
+    location: string;
+    reason: string;
+  };
+  exercises: { name: string; dosage: string; note: string }[];
+  documents: { title: string; status: 'draft' | 'shared' | 'pending'; note?: string }[];
+  messages: { from: string; time: string; text: string }[];
+  checklist: string[];
+};
+
+export const portalPreview: PortalPreview = {
+  patientName: 'Alex Kim',
+  patientEmail: 'alex@example.com',
+  accessCode: 'AK-2841',
+  birthDate: '1992-07-14',
+  nextVisit: {
+    date: 'Thu, Feb 19 · 11:30 AM',
+    mode: 'Telehealth',
+    clinician: 'Dr. Priya Nair',
+    location: 'Online (link shared on unlock)',
+    reason: 'Post-op ankle rehab progress check'
+  },
+  exercises: [
+    { name: 'Ankle pumps', dosage: '3 x 12 daily', note: 'Light resistance band' },
+    { name: 'Single-leg balance', dosage: '3 x 30s', note: 'Eyes forward, kitchen counter nearby' },
+    { name: 'Heel raises', dosage: '3 x 10', note: 'Slow tempo, hold top for 2s' }
+  ],
+  documents: [
+    { title: 'Invoice draft #1024', status: 'draft', note: 'Mark as paid once processed' },
+    { title: 'Care plan v2', status: 'shared', note: 'Visible to patient portal' },
+    { title: 'Telehealth guide PDF', status: 'shared' }
+  ],
+  messages: [
+    { from: 'Priya', time: 'Today 9:10 AM', text: 'See you tomorrow. Use the portal link to join.' },
+    { from: 'Front desk', time: 'Yesterday', text: 'Parking validation available for in-person visits.' }
+  ],
+  checklist: [
+    'Verify consent before telehealth',
+    'Share exercise progress after each visit',
+    'Portal access resets weekly (mock)'
+  ]
+};

@@ -5,6 +5,7 @@ import { BookingForm } from '../../components/BookingForm';
 import { IntakeNotes } from '../../components/IntakeNotes';
 import { BillingSummary } from '../../components/BillingSummary';
 import { TelehealthStub } from '../../components/TelehealthStub';
+import { PortalSnapshot } from '../../components/PortalSnapshot';
 import { mockAppointments, mockPatients, mockTasks } from '../../lib/mock-data';
 
 export const dynamic = 'force-static';
@@ -62,6 +63,13 @@ export default function DashboardPage() {
               <span className="pill">Mock</span>
             </div>
             <TelehealthStub />
+          </div>
+          <div className="card">
+            <div className="card-header">
+              <h2>Patient portal</h2>
+              <span className="pill">New</span>
+            </div>
+            <PortalSnapshot />
           </div>
         </div>
       </div>
