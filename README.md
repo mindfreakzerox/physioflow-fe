@@ -80,8 +80,8 @@ Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appo
 - **Phase 2 – Advanced:** SMS reminders, file/document uploads, advanced analytics, multi-location support
 
 ## Current State (workspace)
-- PhysioFlow-branded Next.js 14.1 app with landing, features hub/detail pages, pricing/contact stubs, portal preview, and dashboard mock (SSR target; static export retired).
-- Local `next build`/`next lint` currently stall at “Creating an optimized production build” on Node 22.22.0 and 18.19.1; needs profiling/flags or Next upgrade. No fresh `.next/out` artifacts yet.
+- PhysioFlow-branded Next.js 14.2.13 app with landing, features hub/detail pages, pricing/contact stubs, portal preview, and dashboard mock (SSR target; static export retired).
+- Local `next build` still stalls at “Creating an optimized production build” on Node 18.19.1 even after removing `webpackBuildWorker` and upgrading to Next 14.2.13. CPU profile captured at `profiles/next-build.cpuprofile` (no `.next/out` artifacts yet).
 - Sticky nav links to dashboard/features/pricing/contact/portal; CTA buttons align to refreshed flows.
 - Pricing and contact pages include tier cards and mock forms (no backend).
 - Calendar ribbon has day/week/month toggles plus reschedule/telehealth queue; booking guardrails (waitlist, buffers, overbook guard) visible on dashboard.
@@ -107,4 +107,4 @@ npm run dev
 
 Notes
 - USE_MOCK_MODE=true keeps mock UI + credential auth active; flip to false when wiring real services.
-- Next build is still hanging in this workspace; profiling/Next upgrade is pending.
+- Next build still hangs post-upgrade; CPU profile saved at `profiles/next-build.cpuprofile` for analysis.
