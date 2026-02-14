@@ -87,3 +87,24 @@ Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appo
 - Calendar ribbon has day/week/month toggles plus reschedule/telehealth queue; booking guardrails (waitlist, buffers, overbook guard) visible on dashboard.
 - UI kit expanded with typography/spacing scale and state guidance; inputs share white surfaces to match cards.
 - Legacy static export remains on gh-pages for reference: https://mindfreakzerox.github.io/physiotherapy-scheduler/.
+
+## Local development (Postgres + mock mode)
+1) Start Postgres locally (docker)
+```
+docker compose up -d db
+# optional: adminer at http://localhost:8080 (user/pass: physio / physio, db: physio)
+```
+
+2) Copy env + install & seed
+```
+cp .env.example .env.local
+# optional: adjust DATABASE_URL / secrets
+npm install
+npm run db:push   # creates tables against your DATABASE_URL (defaults to Postgres)
+npm run db:seed   # loads demo clinic/staff/patients/services/appts/invoices
+npm run dev
+```
+
+Notes
+- USE_MOCK_MODE=true keeps mock UI + credential auth active; flip to false when wiring real services.
+- Next build is still hanging in this workspace; profiling/Next upgrade is pending.
