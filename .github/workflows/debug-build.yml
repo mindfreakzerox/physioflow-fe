@@ -19,10 +19,11 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
-      - name: Enable corepack and activate pnpm@9
+      - name: Enable Corepack and Install pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@9 --activate
+          corepack prepare pnpm@9.0.0 --activate
+          pnpm --version
 
       - name: Install deps
         run: pnpm install --frozen-lockfile --reporter=append-only
