@@ -1,0 +1,48 @@
+name: Debug Next Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build with verbose logging
+        env:
+          NEXT_WEBPACK_LOGGING: verbose
+          NEXT_TRACE_BUILD: '1'
+          SWC_DEBUG: '1'
+          NEXT_WEBPACK_BUILD_WORKER: '0'
+          NEXT_DISABLE_SWC_WORKERS: '1'
+          NEXT_TELEMETRY_DISABLED: '1'
+          NODE_OPTIONS: --max_old_space_size=4096
+        run: |
+          pnpm build 2>&1 | tee build-debug.log
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-debug-log
+          path: build-debug.log
