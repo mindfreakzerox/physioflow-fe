@@ -13,23 +13,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      # 1) Install Node (no pnpm cache yet)
+      - name: Setup Node (no cache)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # 2) Install pnpm globally (most reliable)
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm@9
+          pnpm --version
+
+      # 3) Re-run setup-node with pnpm cache enabled
+      - name: Setup Node (pnpm cache)
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'pnpm'
-
-      - name: Enable pnpm via Corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.0.0 --activate
-          pnpm --version
-
-      - name: Debug pnpm path
-        run: |
-          echo "PATH=$PATH"
-          which pnpm || echo "pnpm not found"
-          pnpm --version || true
 
       - name: Install deps
         run: pnpm install --frozen-lockfile --reporter=append-only
