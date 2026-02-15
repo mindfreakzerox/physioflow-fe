@@ -5,6 +5,10 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write
+  actions: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -64,3 +68,35 @@ jobs:
           path: |
             build-debug.log
             next-build.strace
+
+      - name: Publish logs to debug/build-logs branch
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+          SHA: ${{ github.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          mkdir -p /tmp/build-logs
+          cp -f build-debug.log /tmp/build-logs/ || true
+          cp -f next-build.strace /tmp/build-logs/ || true
+
+          if [ "$(ls -A /tmp/build-logs)" = "" ]; then
+            echo "No logs found to publish; skipping push."
+            exit 0
+          fi
+
+          cd /tmp/build-logs
+          tar -czf logs-${RUN_ID}.tar.gz .
+          rm -f build-debug.log next-build.strace || true
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B debug/build-logs
+          git add .
+          git commit -m "build logs for ${SHA} (run ${RUN_ID})" || true
+
+          git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git
+          git push origin HEAD:debug/build-logs --force
+          echo "Logs pushed to branch debug/build-logs"
