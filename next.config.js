@@ -3,9 +3,14 @@ const webpack = require('webpack');
 
 const withProgress = process.env.BUILD_PROGRESS === '1';
 const disableCache = process.env.DISABLE_WEBPACK_CACHE === '1';
-console.log(`[next.config] BUILD_PROGRESS=${withProgress ? 'on' : 'off'} CACHE=${disableCache ? 'off' : 'on'}`);
+const swcMinifyEnv = process.env.SWC_MINIFY;
+const swcMinify = swcMinifyEnv === '0' ? false : swcMinifyEnv === '1' ? true : undefined;
+console.log(
+  `[next.config] BUILD_PROGRESS=${withProgress ? 'on' : 'off'} CACHE=${disableCache ? 'off' : 'on'} SWC_MINIFY=${swcMinify ?? 'default'}`
+);
 
 const nextConfig = {
+  ...(swcMinify !== undefined ? { swcMinify } : {}),
   typescript: {
     ignoreBuildErrors: true
   },

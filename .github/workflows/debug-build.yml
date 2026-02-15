@@ -44,10 +44,14 @@ jobs:
           NEXT_DISABLE_SWC_WORKERS: '1'
           NEXT_TELEMETRY_DISABLED: '1'
           NODE_OPTIONS: --max_old_space_size=4096
+          BUILD_PROGRESS: '1'
+          DISABLE_WEBPACK_CACHE: '1'
+          SWC_MINIFY: '0'
+          NEXT_IGNORE_ESLINT: '1'
         run: |
           set -o pipefail
           # Capture syscalls to see where build hangs; hard timeout to avoid stuck jobs.
-          timeout 12m strace -f -tt -s 128 -o next-build.strace pnpm build 2>&1 | tee build-debug.log
+          timeout 12m strace -f -tt -s 128 -o next-build.strace pnpm exec next build --debug 2>&1 | tee build-debug.log
           BUILD_EXIT=${PIPESTATUS[0]}
           echo "pnpm build exit code: ${BUILD_EXIT}"
           exit ${BUILD_EXIT}
