@@ -5,11 +5,15 @@ const withProgress = process.env.BUILD_PROGRESS === '1';
 const disableCache = process.env.DISABLE_WEBPACK_CACHE === '1';
 const swcMinifyEnv = process.env.SWC_MINIFY;
 const swcMinify = swcMinifyEnv === '0' ? false : swcMinifyEnv === '1' ? true : undefined;
+const basePath = process.env.BASE_PATH || '';
+const assetPrefix = process.env.ASSET_PREFIX || basePath || undefined;
 console.log(
-  `[next.config] BUILD_PROGRESS=${withProgress ? 'on' : 'off'} CACHE=${disableCache ? 'off' : 'on'} SWC_MINIFY=${swcMinify ?? 'default'}`
+  `[next.config] BUILD_PROGRESS=${withProgress ? 'on' : 'off'} CACHE=${disableCache ? 'off' : 'on'} SWC_MINIFY=${swcMinify ?? 'default'} BASE_PATH=${basePath || '/'} ASSET_PREFIX=${assetPrefix || 'default'}`
 );
 
 const nextConfig = {
+  ...(basePath ? { basePath } : {}),
+  ...(assetPrefix ? { assetPrefix } : {}),
   ...(swcMinify !== undefined ? { swcMinify } : {}),
   typescript: {
     ignoreBuildErrors: true

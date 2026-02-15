@@ -80,13 +80,10 @@ Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appo
 - **Phase 2 – Advanced:** SMS reminders, file/document uploads, advanced analytics, multi-location support
 
 ## Current State (workspace)
-- PhysioFlow-branded Next.js 14.2.13 app with landing, features hub/detail pages, pricing/contact stubs, portal preview, and dashboard mock (SSR target; static export retired).
-- Local `next build` still stalls at “Creating an optimized production build” on Node 18.19.1 even after removing `webpackBuildWorker` and upgrading to Next 14.2.13. CPU profile captured at `profiles/next-build.cpuprofile` (no `.next/out` artifacts yet).
-- Sticky nav links to dashboard/features/pricing/contact/portal; CTA buttons align to refreshed flows.
-- Pricing and contact pages include tier cards and mock forms (no backend).
-- Calendar ribbon has day/week/month toggles plus reschedule/telehealth queue; booking guardrails (waitlist, buffers, overbook guard) visible on dashboard.
-- UI kit expanded with typography/spacing scale and state guidance; inputs share white surfaces to match cards.
-- Legacy static export remains on gh-pages for reference: https://mindfreakzerox.github.io/physiotherapy-scheduler/.
+- PhysioFlow-branded Next.js 16.1.6 app on Node 20 (pnpm). Landing, features hub/detail pages, pricing/contact stubs, portal preview, and dashboard mock remain static (no external keys required).
+- GH Actions debug build (strace + verbose) now force-publishes its logs as a compressed artifact to the `debug/build-logs` branch each run so we can pull them via git even without Actions UI access. Next failing run will give us a log/strace to inspect.
+- GH Pages/export flows still use `next export` with base path/asset prefix driven by the repo name (`/physioflow-fe`) after the rename; legacy static export was at https://mindfreakzerox.github.io/physiotherapy-scheduler/.
+- Sticky nav links to dashboard/features/pricing/contact/portal; CTA buttons align to refreshed flows. Calendar ribbon has day/week/month toggles plus reschedule/telehealth queue; UI kit carries typography/spacing scale and state guidance.
 
 ## Local development (Postgres + mock mode)
 1) Start Postgres locally (docker)

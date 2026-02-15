@@ -8,8 +8,8 @@ permissions:
   contents: write
 
 env:
-  BASE_PATH: /physiotherapy-scheduler
-  ASSET_PREFIX: /physiotherapy-scheduler
+  BASE_PATH: /${{ github.event.repository.name }}
+  ASSET_PREFIX: /${{ github.event.repository.name }}
 
 jobs:
   build-deploy:
