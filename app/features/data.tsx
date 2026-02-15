@@ -139,6 +139,50 @@ export const featureDetails: Record<string, FeatureDetail> = {
       }
     ]
   },
+  'reminders-and-outreach': {
+    title: 'Reminders & Outreach',
+    lede: 'Prebuilt cadences to reduce no-shows and keep telehealth on-time. Email/SMS/portal hooks are wired in mock mode and ready for real providers.',
+    sections: [
+      {
+        title: 'Cadence controls',
+        points: [
+          '24h + day-of reminders with guardrails (quiet hours, cancel-aware)',
+          'Channel toggles for Email/SMS/Portal with consent-aware defaults',
+          'Mock deliverability status and next-send timestamps'
+        ]
+      },
+      {
+        title: 'Future wiring',
+        points: [
+          'Drop in Twilio/SendGrid keys to activate without refactor',
+          'Opt-out and frequency caps planned for compliance',
+          'Test sends and per-clinic branding planned for rollout'
+        ]
+      }
+    ]
+  },
+  'intake-and-consent': {
+    title: 'Intake & Consent',
+    lede: 'Multi-step intake with consent and reminder preferences to capture data before the visit. Runs fully in mock mode today.',
+    sections: [
+      {
+        title: 'Patient flow',
+        points: [
+          'Demographics + preferred date',
+          'Concerns and goals captured in structured fields',
+          'Consent acknowledgement and reminder preferences (email/SMS/both)'
+        ]
+      },
+      {
+        title: 'Operational readiness',
+        points: [
+          'Mock submission receipts for front desk review',
+          'Plugs into portal preview and scheduling workflow',
+          'Real API wiring ready once auth/storage are enabled'
+        ]
+      }
+    ]
+  },
   reporting: {
     title: 'Reporting',
     lede: 'At-a-glance appointments, utilization, revenue placeholders, and upcoming bookings.',

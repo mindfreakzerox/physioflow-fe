@@ -4,8 +4,11 @@ import { BookingSignals } from '../../components/BookingSignals';
 import { BillingSummary } from '../../components/BillingSummary';
 import { CalendarRibbon } from '../../components/CalendarRibbon';
 import { IntakeNotes } from '../../components/IntakeNotes';
+import { InsuranceEligibilityCard } from '../../components/InsuranceEligibilityCard';
+import { IntakeFormWizard } from '../../components/IntakeFormWizard';
 import { PatientList } from '../../components/PatientList';
 import { PortalSnapshot } from '../../components/PortalSnapshot';
+import { ReminderCenter } from '../../components/ReminderCenter';
 import { ScheduleTable } from '../../components/ScheduleTable';
 import { TaskList } from '../../components/TaskList';
 import { TelehealthStub } from '../../components/TelehealthStub';
@@ -100,6 +103,18 @@ export default function DashboardPage() {
               <span className="pill">New</span>
             </div>
             <PortalSnapshot />
+          </div>
+
+          <div className="card">
+            <ReminderCenter />
+          </div>
+
+          <div className="card">
+            <InsuranceEligibilityCard />
+          </div>
+
+          <div className="card">
+            <IntakeFormWizard />
           </div>
         </div>
       </div>

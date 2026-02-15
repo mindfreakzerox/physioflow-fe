@@ -190,6 +190,29 @@ export type PortalPreview = {
   forms: { title: string; status: 'pending' | 'submitted' | 'signed'; note?: string }[];
 };
 
+export type ReminderRule = {
+  id: string;
+  label: string;
+  channel: 'Email' | 'SMS' | 'Portal';
+  cadence: string;
+  nextSend: string;
+  status: 'active' | 'paused';
+  audience: string;
+  coverage: string;
+  guardrails?: string;
+};
+
+export type InsuranceEligibility = {
+  payer: string;
+  memberId: string;
+  coverage: string;
+  deductibleRemaining: string;
+  copay: string;
+  authRequired: boolean;
+  status: 'verified' | 'pending';
+  notes: string[];
+};
+
 export const portalPreview: PortalPreview = {
   patientName: 'Alex Kim',
   patientEmail: 'alex@example.com',
@@ -233,5 +256,56 @@ export const portalPreview: PortalPreview = {
     { title: 'Consent & intake', status: 'signed', note: 'Signed Jan 12' },
     { title: 'Telehealth policy', status: 'submitted', note: 'Ready for next visit' },
     { title: 'Payment authorization', status: 'pending', note: 'Collect on unlock (mock)' }
+  ]
+};
+
+export const reminderRules: ReminderRule[] = [
+  {
+    id: 'rem-1',
+    label: 'Appointment reminder (24h)',
+    channel: 'Email',
+    cadence: '24h before visit',
+    nextSend: 'Today 6:00 PM',
+    status: 'active',
+    audience: 'All confirmed visits',
+    coverage: '98% deliverability (mock)',
+    guardrails: 'Skips if canceled'
+  },
+  {
+    id: 'rem-2',
+    label: 'SMS day-of reminder',
+    channel: 'SMS',
+    cadence: '2h before visit',
+    nextSend: 'Tomorrow 9:30 AM',
+    status: 'active',
+    audience: 'Telehealth + in-person',
+    coverage: 'Queued (mock)',
+    guardrails: 'One SMS per day max'
+  },
+  {
+    id: 'rem-3',
+    label: 'Portal unlock + exercise nudges',
+    channel: 'Portal',
+    cadence: 'After each visit',
+    nextSend: 'Tomorrow 1:00 PM',
+    status: 'paused',
+    audience: 'Patients with portal access',
+    coverage: 'Requires consent',
+    guardrails: 'Pauses if balance overdue'
+  }
+];
+
+export const insuranceEligibility: InsuranceEligibility = {
+  payer: 'Blue Shield (mock)',
+  memberId: 'BS-84219',
+  coverage: '80% PT after deductible',
+  deductibleRemaining: '$320.00',
+  copay: '$25 per visit',
+  authRequired: true,
+  status: 'verified',
+  notes: [
+    'Auth valid through Mar 31',
+    '8 visits remaining this period',
+    'Requires billing code pairing (CPT mock)'
   ]
 };

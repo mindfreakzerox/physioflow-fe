@@ -30,6 +30,16 @@ const features = [
     excerpt: 'Line items, discounts, and claims-ready structure; hook insurers later.',
   },
   {
+    slug: 'reminders-and-outreach',
+    title: 'Reminders & Outreach',
+    excerpt: 'No-show reduction automations with email/SMS/portal hooks and guardrails.',
+  },
+  {
+    slug: 'intake-and-consent',
+    title: 'Intake & Consent',
+    excerpt: 'Multi-step intake, consent, and reminder preferences ready to collect pre-visit data.',
+  },
+  {
     slug: 'reporting',
     title: 'Reporting',
     excerpt: 'At-a-glance appointments, utilization, revenue placeholders, and upcoming bookings.',
