@@ -20,6 +20,21 @@ export default function DashboardPage() {
   return (
     <main className="section">
       <div className="container">
+        <div className="card" style={{ marginBottom: '16px' }}>
+          <div className="card-header">
+            <div>
+              <p className="eyebrow">PhysioFlow dashboard</p>
+              <h2>Keep today on track</h2>
+              <p className="muted">Bookings, holds, and billing cues now mirror the /pricing and /contact flows with clear CTA copy.</p>
+            </div>
+            <div className="actions">
+              <a className="btn" href="/contact">Share booking link</a>
+              <a className="btn ghost" href="/pricing">View pricing</a>
+            </div>
+          </div>
+          <p className="muted small">Empty states stay visible so the static export and portal preview never feel broken during demos.</p>
+        </div>
+
         <div className="grid dashboard-grid">
           <div className="card">
             <div className="card-header">

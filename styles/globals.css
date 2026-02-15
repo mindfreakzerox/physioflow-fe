@@ -224,6 +224,16 @@ h1 { font-size: 42px; margin: 10px 0 18px; line-height: 1.1; letter-spacing: -0.
 .callout { border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02); }
 .callout-title { font-weight: 700; color: var(--text); font-size: 14px; }
 
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: #f8fafc;
+}
+.empty-state h3 { margin: 0 0 6px; font-size: 15px; }
+.empty-state p { margin: 0; }
+.empty-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
 .billing { display: flex; flex-direction: column; gap: 10px; }
 .bill-header { font-weight: 700; color: var(--muted); }
 .bill-body { display: flex; flex-direction: column; gap: 8px; }
