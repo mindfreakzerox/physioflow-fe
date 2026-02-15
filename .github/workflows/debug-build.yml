@@ -35,7 +35,7 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile --reporter=append-only
 
-      - name: Build with verbose logging
+      - name: Build with verbose logging (strace + timeout)
         env:
           NEXT_WEBPACK_LOGGING: verbose
           NEXT_TRACE_BUILD: '1'
@@ -45,11 +45,18 @@ jobs:
           NEXT_TELEMETRY_DISABLED: '1'
           NODE_OPTIONS: --max_old_space_size=4096
         run: |
-          pnpm build 2>&1 | tee build-debug.log
+          set -o pipefail
+          # Capture syscalls to see where build hangs; hard timeout to avoid stuck jobs.
+          timeout 12m strace -f -tt -s 128 -o next-build.strace pnpm build 2>&1 | tee build-debug.log
+          BUILD_EXIT=${PIPESTATUS[0]}
+          echo "pnpm build exit code: ${BUILD_EXIT}"
+          exit ${BUILD_EXIT}
 
-      - name: Upload build log
+      - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: build-debug-log
-          path: build-debug.log
+          name: build-debug
+          path: |
+            build-debug.log
+            next-build.strace
