@@ -8,8 +8,8 @@ permissions:
   contents: write
 
 env:
-  BASE_PATH: /${{ github.event.repository.name }}
-  ASSET_PREFIX: /${{ github.event.repository.name }}
+  BASE_PATH: /physioflow-fe
+  ASSET_PREFIX: /physioflow-fe
 
 jobs:
   build-deploy:
@@ -30,10 +30,19 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile --reporter=append-only
 
-      - name: Build & Export
+      - name: Assert Next version (no stray 14.x)
+        run: pnpm ls next && pnpm ls next-auth
+
+      - name: Build & Export (verbose)
         env:
           NEXT_TELEMETRY_DISABLED: '1'
-        run: pnpm run export
+          BUILD_PROGRESS: '1'
+          NEXT_WEBPACK_LOGGING: verbose
+          NODE_OPTIONS: --max_old_space_size=4096
+        run: |
+          set -o pipefail
+          pnpm run build 2>&1 | tee build.log || SWC_MINIFY=0 pnpm run build 2>&1 | tee -a build.log
+          pnpm run export
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
