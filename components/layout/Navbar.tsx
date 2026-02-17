@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -58,8 +58,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 text-sm md:flex">
-          <Link className="rounded-full border border-gray-200 px-3 py-1.5 text-gray-800 shadow-sm hover:bg-gray-50" href="/login">Login</Link>
-          <Link className="rounded-full bg-teal-600 px-3.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teal-700" href="/dashboard">Try mock</Link>
+          <Link className="rounded-full border border-gray-200 px-3 py-1.5 text-gray-800 shadow-sm hover:bg-gray-50" href="/login">
+            Login
+          </Link>
+          <Link className="rounded-full bg-teal-600 px-3.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teal-700" href="/dashboard">
+            Try mock
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -88,79 +92,55 @@ export function Navbar() {
         </div>
       </div>
 
-      <div
-        className={`md:hidden ${open ? 'pointer-events-auto' : 'pointer-events-none'} fixed inset-0 z-20 transition-[opacity,backdrop-filter] duration-200 ${
-          open ? 'bg-gray-900/40 backdrop-blur-sm opacity-100' : 'opacity-0'
-        }`}
-        onClick={() => setOpen(false)}
-        aria-hidden
-      />
+      {open && (
+        <div className="md:hidden border-t border-gray-100 bg-white shadow-[0_18px_38px_rgba(31,41,55,0.16)]">
+          <div className="mx-auto max-w-6xl space-y-3 px-4 py-4">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => {
+                const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                return (
+                  <Link
+                    key={link.href}
+                    className={`flex items-center justify-between rounded-xl px-3 py-3 text-base font-semibold transition ${
+                      active
+                        ? 'bg-teal-50 text-teal-800 shadow-[0_10px_32px_rgba(13,148,136,0.16)]'
+                        : 'hover:bg-gray-50 text-gray-800'
+                    }`}
+                    href={link.href}
+                  >
+                    {link.label}
+                    {active && <span className="text-xs font-semibold text-teal-700">Active</span>}
+                  </Link>
+                );
+              })}
+            </div>
 
-      <aside
-        className={`md:hidden fixed right-0 top-0 z-30 flex h-full w-80 max-w-[84vw] transform flex-col border-l border-gray-200 bg-white shadow-2xl transition-transform duration-200 ${
-          open ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        aria-hidden={!open}
-      >
-        <div className="flex items-center justify-between px-5 py-4">
-          <div className="flex items-center gap-2 text-base font-black tracking-tight text-gray-900">
-            <span
-              className="h-2.5 w-2.5 rounded-full"
-              style={{ background: 'var(--accent)', boxShadow: '0 0 0 6px rgba(13, 148, 136, 0.12)' }}
-              aria-hidden
-            />
-            PhysioFlow
-          </div>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm"
-            aria-label="Close navigation menu"
-          >
-            <span className="sr-only">Close</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="flex flex-col gap-1 px-4 pb-4">
-          {navLinks.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
-            return (
+            <div className="flex flex-col gap-2 rounded-2xl bg-gray-50 px-3 py-3">
+              <span className="inline-flex w-fit items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 shadow-sm">
+                Mock mode enforced
+              </span>
               <Link
-                key={link.href}
-                className={`flex items-center justify-between rounded-xl px-3 py-3 text-base font-semibold transition ${
-                  active
-                    ? 'bg-teal-50 text-teal-800 shadow-[0_10px_32px_rgba(13,148,136,0.16)]'
-                    : 'hover:bg-gray-50 text-gray-800'
-                }`}
-                href={link.href}
+                className="w-full rounded-full bg-teal-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-teal-700"
+                href="/dashboard"
               >
-                {link.label}
-                {active && <span className="text-xs font-semibold text-teal-700">Active</span>}
+                Try mock dashboard
               </Link>
-            );
-          })}
+              <Link
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-800 shadow-sm hover:bg-gray-100"
+                href="/login"
+              >
+                Login
+              </Link>
+              <Link
+                className="w-full rounded-full border border-teal-100 bg-teal-50 px-4 py-3 text-center text-sm font-semibold text-teal-800 shadow-sm hover:bg-teal-100"
+                href="/book/physioflow-demo"
+              >
+                Book a visit
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="mt-auto flex flex-col gap-3 border-t border-gray-100 px-4 py-5">
-          <span className="inline-flex w-fit items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 shadow-sm">
-            Mock mode enforced
-          </span>
-          <Link className="w-full rounded-full bg-teal-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-teal-700" href="/dashboard">
-            Try mock dashboard
-          </Link>
-          <Link className="w-full rounded-full border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-800 shadow-sm hover:bg-gray-50" href="/login">
-            Login
-          </Link>
-          <Link className="w-full rounded-full border border-teal-100 bg-teal-50 px-4 py-3 text-center text-sm font-semibold text-teal-800 shadow-sm hover:bg-teal-100" href="/book/physioflow-demo">
-            Book a visit
-          </Link>
-        </div>
-      </aside>
+      )}
     </header>
   );
 }
