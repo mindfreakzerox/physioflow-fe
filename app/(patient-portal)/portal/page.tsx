@@ -14,7 +14,7 @@ export default function PatientPortalPage() {
         <Card title="Exercises">
           <ul className="space-y-2 text-sm text-gray-700">
             {portalPreview.exercises.map((ex) => (
-              <li key={ex.name} className="flex items-start justify-between gap-2">
+              <li key={ex.name} className="flex flex-wrap items-start justify-between gap-2">
                 <span>{ex.name}</span>
                 <Badge tone="info">{ex.dosage}</Badge>
               </li>
@@ -24,7 +24,7 @@ export default function PatientPortalPage() {
         <Card title="Documents">
           <ul className="space-y-2 text-sm text-gray-700">
             {portalPreview.documents.map((doc) => (
-              <li key={doc.title} className="flex items-center justify-between">
+              <li key={doc.title} className="flex flex-wrap items-center justify-between gap-2">
                 <span>{doc.title}</span>
                 <Badge tone={doc.status === 'shared' ? 'success' : 'warning'}>{doc.status}</Badge>
               </li>

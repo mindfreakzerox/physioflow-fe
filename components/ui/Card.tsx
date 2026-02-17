@@ -11,7 +11,7 @@ export function Card({ title, actions, children, className }: CardProps) {
   return (
     <div className={`bg-white border border-gray-200 rounded-2xl shadow-[0_12px_32px_rgba(31,41,55,0.08)] p-5 ${className ?? ''}`}>
       {(title || actions) && (
-        <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           {title ? <h3 className="text-base font-semibold text-gray-900">{title}</h3> : <div />}
           {actions}
         </div>

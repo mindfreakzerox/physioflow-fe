@@ -38,7 +38,7 @@ export function BookingWizard({ clinicName }: { clinicName: string }) {
             <Input label="Phone" placeholder="+1 (555) 123-4567" />
             <Input label="Reason" placeholder="Ankle pain follow-up" />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button onClick={() => setStep(3)} disabled={!slot}>Confirm {slot ? `(${slot})` : ''}</Button>
             <Button variant="ghost" onClick={() => setStep(1)}>Back</Button>
           </div>

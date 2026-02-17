@@ -10,7 +10,7 @@ export type TimeSlotPickerProps = {
 export function TimeSlotPicker({ slots, onSelect }: TimeSlotPickerProps) {
   return (
     <Card title="Available times">
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
         {slots.map((slot) => (
           <Button
             key={slot.label}

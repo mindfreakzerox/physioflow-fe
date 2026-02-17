@@ -14,7 +14,7 @@ const links = [
 export function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="w-full max-w-xs space-y-3 rounded-2xl border border-gray-200 bg-white/90 p-5 shadow-[0_12px_32px_rgba(31,41,55,0.08)]">
+    <aside className="w-full max-w-xs shrink-0 space-y-3 rounded-2xl border border-gray-200 bg-white/90 p-5 shadow-[0_12px_32px_rgba(31,41,55,0.08)]">
       <div className="text-sm font-semibold text-gray-900">Clinic nav</div>
       <nav className="flex flex-col gap-1 text-sm">
         {links.map((link) => {

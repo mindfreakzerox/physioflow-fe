@@ -10,8 +10,8 @@ export default function PatientsPage() {
       <Card title="Patients">
         <div className="divide-y divide-gray-200">
           {mockPatients.map((p) => (
-            <div key={p.id} className="flex items-center justify-between py-2 text-sm">
-              <div>
+            <div key={p.id} className="flex flex-wrap items-center justify-between gap-2 py-2 text-sm">
+              <div className="min-w-[180px]">
                 <div className="font-semibold text-gray-900">{p.name}</div>
                 <div className="text-gray-600">{p.email}</div>
               </div>

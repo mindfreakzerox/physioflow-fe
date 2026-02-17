@@ -16,7 +16,7 @@ export default function PatientDetail({ params }: { params: { id: string } }) {
       <Card title="Recent visits">
         <div className="space-y-2 text-sm">
           {visits.map((v) => (
-            <div key={v.id} className="flex items-center justify-between">
+            <div key={v.id} className="flex flex-wrap items-center justify-between gap-2">
               <span>{v.day} {v.start} · {v.visit}</span>
               <span className="text-gray-500">{v.status}</span>
             </div>

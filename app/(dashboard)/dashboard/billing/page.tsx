@@ -21,8 +21,8 @@ export default function BillingPage() {
       <Card title="Invoices">
         <div className="space-y-3 text-sm">
           {invoices.map((inv) => (
-            <div key={inv.id} className="flex items-center justify-between">
-              <div>
+            <div key={inv.id} className="flex flex-wrap items-center justify-between gap-2">
+              <div className="min-w-[200px]">
                 <div className="font-semibold text-gray-900">{inv.id} · {inv.patient}</div>
                 <div className="text-gray-600">{formatCurrency(inv.amount)}</div>
               </div>
