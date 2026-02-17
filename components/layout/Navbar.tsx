@@ -20,8 +20,8 @@ export function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 md:gap-4">
+    <header className="sticky top-0 z-30 border-b border-gray-200/80 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-5 py-4 sm:py-5 md:gap-5">
         <div className="flex flex-1 items-center gap-3 md:flex-none">
           <Link href="/" className="flex items-center gap-2 text-[17px] font-extrabold leading-none tracking-[-0.02em] text-gray-900">
             <span
@@ -37,7 +37,7 @@ export function Navbar() {
         </div>
 
         <nav className="hidden flex-1 md:flex md:justify-center">
-          <div className="flex items-center gap-2 rounded-2xl bg-white/85 px-2 py-1 text-[14px] font-medium text-gray-800 shadow-[0_8px_24px_rgba(31,41,55,0.08)]">
+          <div className="flex items-center gap-2 rounded-[28px] border border-gray-200/70 bg-white/80 px-2.5 py-1.5 text-[14px] font-medium text-gray-800 shadow-[0_14px_38px_rgba(15,23,42,0.08)] backdrop-blur">
             {navLinks.map((link) => {
               const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
@@ -45,8 +45,8 @@ export function Navbar() {
                   key={link.href}
                   className={`rounded-full px-3.5 py-1.75 text-[14px] leading-[1.2] transition-all ${
                     active
-                      ? 'border border-teal-100 bg-teal-50 text-teal-800 shadow-lg'
-                      : 'hover:bg-teal-50 hover:text-teal-800'
+                      ? 'border border-[#0D9488]/25 bg-[#0D9488]/10 text-[#0D9488] shadow-[0_10px_30px_rgba(13,148,136,0.14)]'
+                      : 'hover:bg-gray-50 hover:text-[#0D9488]'
                   }`}
                   href={link.href}
                 >
@@ -58,16 +58,16 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 text-sm md:flex">
-          <Link className="rounded-full border border-gray-200 px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-gray-900 shadow-sm hover:bg-gray-50" href="/login">
+          <Link className="rounded-full border border-gray-200/80 bg-white px-4 py-2.5 text-[14px] font-semibold leading-[1.2] text-gray-900 shadow-[0_10px_26px_rgba(15,23,42,0.08)] transition hover:-translate-y-[1px] hover:bg-gray-50" href="/login">
             Login
           </Link>
-          <Link className="rounded-full bg-teal-600 px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-white shadow-[0_10px_22px_rgba(13,148,136,0.18)] hover:bg-teal-700" href="/dashboard">
+          <Link className="rounded-full bg-[#0D9488] px-4 py-2.5 text-[14px] font-semibold leading-[1.2] text-white shadow-[0_14px_32px_rgba(13,148,136,0.2)] transition hover:-translate-y-[1px] hover:bg-[#0b7f76]" href="/dashboard">
             Try mock
           </Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <Link className="rounded-full bg-teal-600 px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-white shadow-[0_10px_22px_rgba(13,148,136,0.18)] hover:bg-teal-700" href="/dashboard">
+          <Link className="rounded-full bg-[#0D9488] px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-white shadow-[0_10px_22px_rgba(13,148,136,0.18)] hover:bg-[#0b7f76]" href="/dashboard">
             Try mock
           </Link>
           <button

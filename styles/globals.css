@@ -28,9 +28,10 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  background: radial-gradient(circle at top right, rgba(13, 148, 136, 0.05), transparent 38%),
-    radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.04), transparent 32%),
-    var(--bg);
+  background:
+    radial-gradient(circle at 82% 10%, rgba(13, 148, 136, 0.05), transparent 35%),
+    radial-gradient(circle at 18% 24%, rgba(249, 115, 22, 0.035), transparent 30%),
+    linear-gradient(180deg, #f9fafb 0%, #f4f7f6 48%, #f9fafb 100%);
   color: var(--text);
   letter-spacing: -0.01em;
   line-height: 1.65;
