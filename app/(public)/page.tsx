@@ -10,20 +10,20 @@ const metrics = [
 
 export default function PublicHome() {
   return (
-    <main className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10">
-      <section className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-4">
-          <p className="text-xs uppercase tracking-[0.2em] text-teal-700">PhysioFlow</p>
-          <h1 className="text-3xl font-black leading-tight text-gray-900">Mocked practice OS for physio clinics.</h1>
-          <p className="text-lg text-gray-600">
+    <main className="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-14 pt-12 sm:gap-12 sm:pb-16 sm:pt-14">
+      <section className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="flex flex-col gap-4 sm:gap-5">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-teal-700 sm:text-xs">PhysioFlow</p>
+          <h1 className="text-3xl font-black leading-tight text-gray-900 sm:text-4xl md:text-5xl">Mocked practice OS for physio clinics.</h1>
+          <p className="text-base text-gray-600 sm:text-lg">
             Scheduling, intake, billing, and patient portal—fully in mock mode until real API keys are added.
           </p>
-          <div className="flex flex-wrap gap-3 text-sm">
+          <div className="flex flex-wrap gap-3 text-sm sm:gap-4">
             <Link className="rounded-full bg-teal-600 px-4 py-2 font-semibold text-white shadow-lg hover:bg-teal-700" href="/dashboard">Open dashboard</Link>
             <Link className="rounded-full border border-gray-200 px-4 py-2 font-semibold text-gray-800 shadow-sm hover:bg-white" href="/book/physioflow-demo">Book a visit</Link>
           </div>
         </div>
-        <Card title="Clinic snapshot">
+        <Card title="Clinic snapshot" className="min-w-0">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {metrics.map((metric) => (
               <div key={metric.label} className="rounded-lg bg-gray-50 p-3">
