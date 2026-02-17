@@ -12,25 +12,18 @@ const clinicData = {
 };
 
 const practitioners = [
-  { name: 'Dr. Alex Kim', email: 'dr.smith@physioflow.demo', role: 'practitioner', specialties: 'Sports rehab', password: 'demo123' },
-  { name: 'Dr. Priya Nair', email: 'admin@physioflow.demo', role: 'admin', specialties: 'Manual therapy', password: 'demo123' },
-  { name: 'Dr. Omar Rahman', email: 'front@physioflow.demo', role: 'front-desk', specialties: 'Spine', password: 'demo123' },
+  { name: 'Alex Kim', email: 'admin@physioflow.demo', role: 'admin', specialties: 'Clinic admin', password: 'demo123' },
+  { name: 'Dr. Priya Nair', email: 'dr.smith@physioflow.demo', role: 'practitioner', specialties: 'Sports rehab', password: 'demo123' },
+  { name: 'Dr. Omar Rahman', email: 'front@physioflow.demo', role: 'front-desk', specialties: 'Front desk', password: 'demo123' },
   { name: 'Dr. Sam Lee', email: 'sam@physioflow.demo', role: 'practitioner', specialties: 'Neuro', password: 'demo123' },
   { name: 'Dr. Jamie Chen', email: 'jamie@physioflow.demo', role: 'practitioner', specialties: 'Pelvic health', password: 'demo123' }
 ];
 
-const patients = [
-  { name: 'Alex Kim', email: 'alex@example.com', phone: '+1 (555) 100-0001' },
-  { name: 'Priya Nair', email: 'priya@example.com', phone: '+1 (555) 100-0002' },
-  { name: 'Omar Rahman', email: 'omar@example.com', phone: '+1 (555) 100-0003' },
-  { name: 'Sam Lee', email: 'sam@example.com', phone: '+1 (555) 100-0004' },
-  { name: 'Jordan Park', email: 'jordan@example.com', phone: '+1 (555) 100-0005' },
-  { name: 'Taylor Brooks', email: 'taylor@example.com', phone: '+1 (555) 100-0006' },
-  { name: 'Casey Nguyen', email: 'casey@example.com', phone: '+1 (555) 100-0007' },
-  { name: 'Morgan Patel', email: 'morgan@example.com', phone: '+1 (555) 100-0008' },
-  { name: 'Riley Chen', email: 'riley@example.com', phone: '+1 (555) 100-0009' },
-  { name: 'Quinn Davis', email: 'quinn@example.com', phone: '+1 (555) 100-0010' }
-];
+const patients = Array.from({ length: 20 }).map((_, idx) => ({
+  name: `Patient ${idx + 1}`,
+  email: `patient${idx + 1}@example.com`,
+  phone: `+1 (555) 100-${(idx + 1).toString().padStart(4, '0')}`
+}));
 
 const services = [
   { name: 'Initial Consult (60m)', duration: 60, price: 120, description: 'Comprehensive assessment', color: '#0D9488' },
@@ -77,10 +70,10 @@ async function main() {
   );
 
   const now = new Date();
-  const apptsData = Array.from({ length: 20 }).map((_, idx) => {
-    const dayOffset = (idx % 10) - 5; // past 5 days to next 4 days
+  const apptsData = Array.from({ length: 50 }).map((_, idx) => {
+    const dayOffset = (idx % 30) - 15; // past 15 days to next 14 days
     const start = addDays(now, dayOffset);
-    start.setHours(9 + (idx % 5) * 2, 0, 0, 0);
+    start.setHours(8 + (idx % 8), (idx % 2) * 30, 0, 0);
     const service = serviceRecords[idx % serviceRecords.length];
     const end = new Date(start.getTime() + service.duration * 60000);
     const practitioner = practitionerRecords[idx % practitionerRecords.length];
@@ -119,7 +112,6 @@ async function main() {
     )
   );
 
-  // example documents
   await prisma.document.createMany({
     data: patientRecords.slice(0, 3).map((p, idx) => ({
       patientId: p.id,

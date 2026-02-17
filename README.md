@@ -80,28 +80,29 @@ Physiotherapy-Scheduler (PhysioFlow) is a web-based practice management and appo
 - **Phase 2 – Advanced:** SMS reminders, file/document uploads, advanced analytics, multi-location support
 
 ## Current State (workspace)
-- PhysioFlow-branded Next.js 16.1.6 app on Node 20 (pnpm). Landing, features hub/detail pages, pricing/contact stubs, portal preview, and dashboard mock remain static (no external keys required).
-- GH Actions debug build (strace + verbose) now force-publishes its logs as a compressed artifact to the `debug/build-logs` branch each run so we can pull them via git even without Actions UI access. Next failing run will give us a log/strace to inspect.
-- GH Pages/export flows still use `next export` with base path/asset prefix driven by the repo name (`/physioflow-fe`) after the rename; legacy static export was at https://mindfreakzerox.github.io/physiotherapy-scheduler/.
-- Sticky nav links to dashboard/features/pricing/contact/portal; CTA buttons align to refreshed flows. Calendar ribbon has day/week/month toggles plus reschedule/telehealth queue; UI kit carries typography/spacing scale and state guidance.
+- PhysioFlow-branded Next.js 16 (App Router) app with mock-only flows; USE_MOCK_MODE defaults to true and all integrations log to console/in-memory.
+- Prisma schema matches the healthcare brief (SQLite by default). Seed data includes demo clinic, 5 practitioners, 20 patients, 8 services, 50 appointments, and 10 invoices.
+- NextAuth credentials provider with demo users: admin@physioflow.demo, dr.smith@physioflow.demo, front@physioflow.demo, patient@physioflow.demo (password: demo123).
+- Public landing, booking, dashboard, patient portal, and /dev/emails are all wired to mock data/services. Deploy target is Vercel (server build; no static export/base path assumptions).
 
-## Local development (Postgres + mock mode)
-1) Start Postgres locally (docker)
-```
-docker compose up -d db
-# optional: adminer at http://localhost:8080 (user/pass: physio / physio, db: physio)
-```
-
-2) Copy env + install & seed
+## Local development (mock-first)
+1) Setup env + dependencies (pnpm)
 ```
 cp .env.example .env.local
-# optional: adjust DATABASE_URL / secrets
-npm install
-npm run db:push   # creates tables against your DATABASE_URL (defaults to Postgres)
-npm run db:seed   # loads demo clinic/staff/patients/services/appts/invoices
-npm run dev
+pnpm install
+```
+
+2) Prime the mock database (SQLite)
+```
+pnpm run db:push
+pnpm run db:seed
+```
+
+3) Run the app
+```
+pnpm run dev
 ```
 
 Notes
-- USE_MOCK_MODE=true keeps mock UI + credential auth active; flip to false when wiring real services.
-- Next build still hangs post-upgrade; CPU profile saved at `profiles/next-build.cpuprofile` for analysis.
+- USE_MOCK_MODE is enforced by default; real services require flipping the flag and adding API keys.
+- DATABASE_URL defaults to file:./prisma/dev.db (SQLite). docker-compose provides Postgres only if you intentionally point DATABASE_URL at it.
