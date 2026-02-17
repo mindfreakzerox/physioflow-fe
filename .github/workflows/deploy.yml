@@ -1,21 +1,12 @@
-name: Deploy to GitHub Pages
+name: CI Build (Vercel target)
 
 on:
   push:
     branches: [ main ]
+  pull_request:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-env:
-  BASE_PATH: /physioflow-fe
-  ASSET_PREFIX: /physioflow-fe
 
 jobs:
   build:
@@ -41,29 +32,9 @@ jobs:
       - name: Assert Next version (no stray 14.x)
         run: pnpm ls next && pnpm ls next-auth
 
-      - name: Build & Export (verbose)
+      - name: Build (server, no export)
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           BUILD_PROGRESS: '1'
-          NEXT_WEBPACK_LOGGING: verbose
-          NODE_OPTIONS: --max_old_space_size=4096
-        run: |
-          set -o pipefail
-          pnpm run build 2>&1 | tee build.log || SWC_MINIFY=0 pnpm run build 2>&1 | tee -a build.log
-          pnpm run export
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          DISABLE_WEBPACK_CACHE: '1'
+        run: pnpm run build
