@@ -23,7 +23,7 @@ export function Navbar() {
     <header className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 md:gap-4">
         <div className="flex flex-1 items-center gap-3 md:flex-none">
-          <Link href="/" className="flex items-center gap-2 text-lg font-black tracking-tight text-gray-900">
+          <Link href="/" className="flex items-center gap-2 text-[17px] font-extrabold leading-none tracking-[-0.02em] text-gray-900">
             <span
               className="h-2.5 w-2.5 rounded-full"
               style={{ background: 'var(--accent)', boxShadow: '0 0 0 6px rgba(13, 148, 136, 0.12)' }}
@@ -31,19 +31,19 @@ export function Navbar() {
             />
             PhysioFlow
           </Link>
-          <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 shadow-sm md:text-sm">
+          <span className="inline-flex items-center rounded-full bg-[#0D9488] px-3 py-1.5 text-[12.5px] font-semibold text-white shadow-sm ring-1 ring-[#0D9488]/20 md:text-[13px]">
             Mock mode
           </span>
         </div>
 
         <nav className="hidden flex-1 md:flex md:justify-center">
-          <div className="flex items-center gap-2 rounded-2xl bg-white/80 px-2 py-1 text-sm text-gray-700 shadow-[0_8px_24px_rgba(31,41,55,0.08)]">
+          <div className="flex items-center gap-2 rounded-2xl bg-white/85 px-2 py-1 text-[14px] font-medium text-gray-800 shadow-[0_8px_24px_rgba(31,41,55,0.08)]">
             {navLinks.map((link) => {
               const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
                 <Link
                   key={link.href}
-                  className={`rounded-full px-3 py-1.5 transition-colors ${
+                  className={`rounded-full px-3.5 py-1.75 text-[14px] leading-[1.2] transition-all ${
                     active
                       ? 'border border-teal-100 bg-teal-50 text-teal-800 shadow-lg'
                       : 'hover:bg-teal-50 hover:text-teal-800'
@@ -58,16 +58,16 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 text-sm md:flex">
-          <Link className="rounded-full border border-gray-200 px-3 py-1.5 text-gray-800 shadow-sm hover:bg-gray-50" href="/login">
+          <Link className="rounded-full border border-gray-200 px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-gray-900 shadow-sm hover:bg-gray-50" href="/login">
             Login
           </Link>
-          <Link className="rounded-full bg-teal-600 px-3.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teal-700" href="/dashboard">
+          <Link className="rounded-full bg-teal-600 px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-white shadow-[0_10px_22px_rgba(13,148,136,0.18)] hover:bg-teal-700" href="/dashboard">
             Try mock
           </Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <Link className="rounded-full bg-teal-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-700" href="/dashboard">
+          <Link className="rounded-full bg-teal-600 px-3.5 py-1.75 text-[14px] font-semibold leading-[1.2] text-white shadow-[0_10px_22px_rgba(13,148,136,0.18)] hover:bg-teal-700" href="/dashboard">
             Try mock
           </Link>
           <button
@@ -101,7 +101,7 @@ export function Navbar() {
                 return (
                   <Link
                     key={link.href}
-                    className={`flex items-center justify-between rounded-xl px-3 py-3 text-base font-semibold transition ${
+                    className={`flex items-center justify-between rounded-xl px-3.5 py-3 text-[15px] font-semibold leading-[1.3] transition-colors ${
                       active
                         ? 'bg-teal-50 text-teal-800 shadow-[0_10px_32px_rgba(13,148,136,0.16)]'
                         : 'hover:bg-gray-50 text-gray-800'
@@ -116,23 +116,23 @@ export function Navbar() {
             </div>
 
             <div className="flex flex-col gap-2 rounded-2xl bg-gray-50 px-3 py-3">
-              <span className="inline-flex w-fit items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 shadow-sm">
+              <span className="inline-flex w-fit items-center rounded-full bg-[#0D9488] px-3 py-1.5 text-[12.5px] font-semibold text-white shadow-sm ring-1 ring-[#0D9488]/20">
                 Mock mode enforced
               </span>
               <Link
-                className="w-full rounded-full bg-teal-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-teal-700"
+                className="w-full rounded-full bg-teal-600 px-4 py-3 text-center text-[14px] font-semibold leading-[1.25] text-white shadow-[0_10px_22px_rgba(13,148,136,0.18)] hover:bg-teal-700"
                 href="/dashboard"
               >
                 Try mock dashboard
               </Link>
               <Link
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-800 shadow-sm hover:bg-gray-100"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-center text-[14px] font-semibold leading-[1.25] text-gray-900 shadow-sm hover:bg-gray-100"
                 href="/login"
               >
                 Login
               </Link>
               <Link
-                className="w-full rounded-full border border-teal-100 bg-teal-50 px-4 py-3 text-center text-sm font-semibold text-teal-800 shadow-sm hover:bg-teal-100"
+                className="w-full rounded-full border border-teal-100 bg-teal-50 px-4 py-3 text-center text-[14px] font-semibold leading-[1.25] text-teal-800 shadow-sm hover:bg-teal-100"
                 href="/book/physioflow-demo"
               >
                 Book a visit
