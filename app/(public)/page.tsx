@@ -10,7 +10,7 @@ const metrics = [
 
 export default function PublicHome() {
   return (
-    <main className="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-14 pt-12 sm:gap-12 sm:pb-16 sm:pt-14">
+    <main className="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-14 pt-16 sm:gap-12 sm:pb-16 sm:pt-20">
       <section className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="flex flex-col gap-4 sm:gap-5">
           <p className="text-[11px] uppercase tracking-[0.22em] text-teal-700 sm:text-xs">PhysioFlow</p>
